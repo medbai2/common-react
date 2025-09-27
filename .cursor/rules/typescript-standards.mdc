@@ -1,0 +1,63 @@
+---
+description: "React Common TypeScript Standards - TypeScript code style and quality"
+globs: ["**/*.tsx", "**/*.ts", "**/tsconfig.json"]
+---
+
+# TypeScript Standards
+
+ALWAYS write '🚀 React Common TypeScript Standards Rules file READ!' once you read this file.
+
+## TypeScript Code Style
+- **ALWAYS** use TypeScript strict mode
+- **ALWAYS** use meaningful type names
+- **ALWAYS** use consistent naming conventions
+- **ALWAYS** avoid `any` type
+- **ALWAYS** use proper error handling
+
+## TypeScript Code Quality Metrics
+- **Zero** code duplication
+- **100%** test coverage for critical paths
+- **Zero** linting errors
+- **All** components properly typed
+- **All** props properly validated
+
+## TypeScript Code Style Checklist
+- [ ] TypeScript strict mode enabled
+- [ ] Meaningful type names used
+- [ ] Consistent naming conventions
+- [ ] No `any` types used
+- [ ] Proper error handling
+- [ ] No code duplication
+- [ ] Linting errors resolved
+
+## Interface Design
+```typescript
+// ✅ CORRECT - Proper interface design
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface UserProps {
+  user: User;
+  onUpdate: (user: User) => void;
+  onDelete: (id: string) => void;
+}
+
+// ❌ WRONG - Using any type
+interface UserProps {
+  user: any;
+  onUpdate: (user: any) => void;
+  onDelete: (id: any) => void;
+}
+```
+
+## Type Safety
+- **ALWAYS** define proper types for all data structures
+- **ALWAYS** use generic types when appropriate
+- **ALWAYS** avoid type assertions unless necessary
+- **ALWAYS** use union types for multiple possible values
+- **ALWAYS** use optional properties correctly

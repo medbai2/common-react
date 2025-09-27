@@ -1,0 +1,67 @@
+# Performance Standards
+
+ALWAYS write '>> React Common Performance Standards Rules file READ!' once you read this file.
+
+## React Performance
+- **ALWAYS** use React.memo for expensive components
+- **ALWAYS** use useMemo for expensive calculations
+- **ALWAYS** use useCallback for event handlers
+- **ALWAYS** implement proper key props for lists
+- **ALWAYS** avoid unnecessary re-renders
+
+## Performance Patterns
+```tsx
+// ✅ CORRECT - Performance optimizations
+const ExpensiveComponent = React.memo(({ data, onAction }) => {
+  const processedData = useMemo(() => {
+    return data.map(item => ({ ...item, processed: true }));
+  }, [data]);
+
+  const handleClick = useCallback((id: string) => {
+    onAction(id);
+  }, [onAction]);
+
+  return (
+    <div>
+      {processedData.map(item => (
+        <Item key={item.id} data={item} onClick={handleClick} />
+      ))}
+    </div>
+  );
+});
+```
+
+## Performance Anti-Patterns (NEVER DO)
+```tsx
+// ❌ WRONG - Creating objects in render
+const Component = ({ items }) => {
+  return (
+    <div>
+      {items.map(item => (
+        <Item key={item.id} style={{color: 'red'}} data={item} />
+      ))}
+    </div>
+  );
+};
+
+// ❌ WRONG - Missing dependencies in useEffect
+useEffect(() => {
+  fetchData(userId); // userId not in dependencies
+}, []);
+
+// ❌ WRONG - Unnecessary re-renders
+const Component = ({ data }) => {
+  const processedData = data.map(item => ({ ...item, processed: true }));
+  return <div>{processedData.length}</div>;
+};
+```
+
+## Performance Checklist
+- [ ] React.memo used appropriately
+- [ ] useMemo for expensive calculations
+- [ ] useCallback for event handlers
+- [ ] Proper key props for lists
+- [ ] No objects created in render
+- [ ] Proper useEffect dependencies
+- [ ] Bundle size optimized
+- [ ] Images optimized

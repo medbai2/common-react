@@ -1,0 +1,75 @@
+---
+description: "React Common Component Standards - React component patterns and anti-patterns"
+globs: ["**/*.tsx", "**/*.jsx"]
+---
+
+# React Component Standards
+
+ALWAYS write '🚀 React Common Component Standards Rules file READ!' once you read this file.
+
+## Component Structure
+```tsx
+// ✅ CORRECT - Proper component structure
+interface ComponentProps {
+  title: string;
+  isVisible: boolean;
+  onAction: (id: string) => void;
+}
+
+const Component: React.FC<ComponentProps> = ({ 
+  title, 
+  isVisible, 
+  onAction 
+}) => {
+  const [state, setState] = useState<string>('');
+  
+  const handleClick = useCallback((id: string) => {
+    onAction(id);
+  }, [onAction]);
+
+  if (!isVisible) return null;
+
+  return (
+    <div className="component">
+      <h2>{title}</h2>
+      <button onClick={() => handleClick('test')}>
+        Action
+      </button>
+    </div>
+  );
+};
+
+export default Component;
+```
+
+## Component Anti-Patterns (NEVER DO)
+```tsx
+// ❌ WRONG - Any type usage
+const Component = (props: any) => {
+  return <div>{props.title}</div>;
+};
+
+// ❌ WRONG - Inline styles
+const Component = () => {
+  return <div style={{color: 'red'}}>Hello</div>;
+};
+
+// ❌ WRONG - Missing key prop
+const List = ({ items }) => {
+  return (
+    <ul>
+      {items.map(item => <li>{item.name}</li>)}
+    </ul>
+  );
+};
+```
+
+## Component Checklist
+- [ ] Proper TypeScript interfaces defined
+- [ ] No `any` types used
+- [ ] Proper prop validation
+- [ ] Error boundaries implemented
+- [ ] Proper key props for lists
+- [ ] No inline styles
+- [ ] Proper event handling
+- [ ] Memoization used when appropriate

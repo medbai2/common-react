@@ -1,4 +1,4 @@
-# @medbai/react-common
+# @medbai/common-react
 
 Shared React components, utilities, and styles for MedBai projects.
 
@@ -14,7 +14,7 @@ This package provides a comprehensive design system and shared components for Re
 ## Installation
 
 ```bash
-npm install @medbai/react-common
+npm install @medbai/common-react
 ```
 
 ## Usage
@@ -24,14 +24,14 @@ npm install @medbai/react-common
 Import the main stylesheet in your application:
 
 ```tsx
-import '@medbai/react-common/dist/index.css';
+import '@medbai/common-react/dist/common-react.css';
 ```
 
 ### Using Components
 
 ```tsx
 import React from 'react';
-import { Button, Input, StatusBanner, Table } from '@medbai/react-common';
+import { Button, Input, StatusBanner, Table } from '@medbai/common-react';
 
 function MyComponent() {
   return (
@@ -55,7 +55,7 @@ function MyComponent() {
 ### Using Utilities
 
 ```tsx
-import { logger, sanitizeName, sanitizeTitle } from '@medbai/react-common';
+import { logger, sanitizeName, sanitizeTitle } from '@medbai/common-react';
 
 // Logging
 logger.info('User action', { userId: 123, action: 'login' });
@@ -200,7 +200,7 @@ A specialized table for displaying user statistics:
 Structured logging utility:
 
 ```tsx
-import { logger } from '@medbai/react-common';
+import { logger } from '@medbai/common-react';
 
 logger.debug('Debug message', { context: 'data' });
 logger.info('Info message');
@@ -213,7 +213,7 @@ logger.error('Error message', { error: 'details' });
 Input sanitization utilities:
 
 ```tsx
-import { sanitizeName, sanitizeTitle, sanitizeString, sanitizeHTML } from '@medbai/react-common';
+import { sanitizeName, sanitizeTitle, sanitizeString, sanitizeHTML } from '@medbai/common-react';
 
 const cleanName = sanitizeName(userInput);
 const cleanTitle = sanitizeTitle(userTitle);

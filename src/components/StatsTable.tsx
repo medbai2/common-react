@@ -82,3 +82,5 @@ export const StatsTable: React.FC<StatsTableProps> = ({ data, className = '' }) 
     />
   );
 };
+
+

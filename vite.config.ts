@@ -18,6 +18,13 @@ export default defineConfig({
           react: 'React',
           'react-dom': 'ReactDOM',
         },
+        assetFileNames: (assetInfo) => {
+          // Rename CSS file to match package name
+          if (assetInfo.name === 'style.css') {
+            return 'common-react.css';
+          }
+          return assetInfo.name || 'assets/[name][extname]';
+        },
       },
     },
   },

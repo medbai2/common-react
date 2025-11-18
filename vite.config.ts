@@ -12,11 +12,12 @@ export default defineConfig({
       fileName: (format) => `index.${format === 'es' ? 'esm' : format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'React',
         },
         assetFileNames: (assetInfo) => {
           // Rename CSS file to match package name

@@ -14,12 +14,21 @@ export { Table } from './components/Table';
 export { GreetingForm, type GreetingFormData } from './components/GreetingForm';
 export { StatsTable, type UserStats } from './components/StatsTable';
 
+// Export Auth0 components
+export { AuthProvider } from './components/auth/AuthProvider';
+export { AuthButton } from './components/auth/AuthButton';
+export { ProtectedRoute } from './components/auth/ProtectedRoute';
+
 // Export all utilities
 export { default as logger } from './utils/logger';
 export * from './utils/sanitizer';
 
+// Export Auth0 service
+export { useAuth0, getAccessToken } from './services/auth0';
+
 // Export all types
 export * from './types/common';
+export * from './types/auth0';
 
 // Export styles
 import './styles/index.css';

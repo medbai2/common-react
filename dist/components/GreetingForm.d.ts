@@ -4,8 +4,8 @@
  */
 import React from 'react';
 export interface GreetingFormData {
-    name: string;
-    title: string;
+    name?: string;
+    title?: string;
 }
 export interface GreetingFormProps {
     onSubmit: (data: GreetingFormData) => void;

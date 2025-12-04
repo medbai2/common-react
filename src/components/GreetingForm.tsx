@@ -9,8 +9,8 @@ import { Button } from './Button';
 import { sanitizeName, sanitizeTitle } from '../utils/sanitizer';
 
 export interface GreetingFormData {
-  name: string;
-  title: string;
+  name?: string; // Optional - can come from Auth0 or other sources
+  title?: string;
 }
 
 export interface GreetingFormProps {
@@ -35,8 +35,10 @@ export const GreetingForm: React.FC<GreetingFormProps> = ({
   const validateForm = (): boolean => {
     const newErrors: Partial<GreetingFormData> = {};
 
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+    // Name is optional - can come from Auth0 or other sources
+    // Only validate if provided
+    if (formData.name && !formData.name.trim()) {
+      newErrors.name = 'Name cannot be empty';
     }
 
     setErrors(newErrors);
@@ -51,9 +53,9 @@ export const GreetingForm: React.FC<GreetingFormProps> = ({
     }
 
     // Sanitize and trim inputs
-    const sanitizedData = {
-      name: sanitizeName(formData.name.trim()),
-      title: sanitizeTitle(formData.title.trim()),
+    const sanitizedData: GreetingFormData = {
+      ...(formData.name && { name: sanitizeName(formData.name.trim()) }),
+      ...(formData.title && { title: sanitizeTitle(formData.title.trim()) }),
     };
 
     onSubmit(sanitizedData);
@@ -68,26 +70,28 @@ export const GreetingForm: React.FC<GreetingFormProps> = ({
     }
   };
 
-  const isFormValid = formData.name.trim().length > 0;
-  const isDisabled = disabled || loading || !isFormValid;
+  // Form is valid if name is provided OR if name is optional (e.g., from Auth0)
+  // For now, we'll allow submission even without name (backend will use Auth0 name)
+  const isFormValid = true; // Always allow submission - name can come from Auth0
+  const isDisabled = disabled || loading;
 
   return (
     <form onSubmit={handleSubmit} className={`medbai-form ${className}`}>
       <Input
         id="name"
         label="Name"
-        required
-        value={formData.name}
+        value={formData.name || ''}
         onChange={handleInputChange('name')}
-        placeholder="Enter your name"
+        placeholder="Enter your name (optional if authenticated)"
         disabled={disabled || loading}
         error={errors.name}
+        help="Optional - will use authenticated user name if available"
       />
 
       <Input
         id="title"
         label="Title"
-        value={formData.title}
+        value={formData.title || ''}
         onChange={handleInputChange('title')}
         placeholder="Enter your title (optional)"
         disabled={disabled || loading}
@@ -103,11 +107,6 @@ export const GreetingForm: React.FC<GreetingFormProps> = ({
         {loading ? 'Submitting...' : 'Submit'}
       </Button>
       
-      {isDisabled && !loading && (
-        <div className="medbai-form-help">
-          Please enter a name to submit
-        </div>
-      )}
     </form>
   );
 };

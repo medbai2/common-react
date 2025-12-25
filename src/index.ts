@@ -1,6 +1,6 @@
 /**
- * MedBai React Common Library
- * Shared components, utilities, and styles for MedBai projects
+ * React Common Library
+ * Shared components, utilities, and styles for React projects
  */
 
 // Export all components

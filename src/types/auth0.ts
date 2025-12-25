@@ -10,6 +10,11 @@ export interface Auth0Config {
   clientId: string;
   audience?: string;
   redirectUri?: string;
+  /**
+   * Optional custom scope. If not provided, defaults to 'openid profile email offline_access'
+   * The offline_access scope is required for refresh tokens.
+   */
+  scope?: string;
 }
 
 /**

@@ -1,10 +1,10 @@
 # @medbai/common-react
 
-Shared React components, utilities, and styles for MedBai projects.
+Shared React components, utilities, and styles for React projects.
 
 ## Overview
 
-This package provides a comprehensive design system and shared components for React applications in the MedBai ecosystem. It includes:
+This package provides a comprehensive design system and shared components for React applications. It includes:
 
 - **Design System**: CSS variables, base styles, and component styles
 - **Reusable Components**: Button, Input, Table, StatusBanner, and more
@@ -36,7 +36,7 @@ import { Button, Input, StatusBanner, Table } from '@medbai/common-react';
 function MyComponent() {
   return (
     <div>
-      <StatusBanner type="info" message="Welcome to MedBai!" />
+      <StatusBanner type="info" message="Welcome!" />
       <Input
         id="name"
         label="Name"

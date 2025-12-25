@@ -104,6 +104,19 @@ export async function getAccessToken(
   try {
     return await getAccessTokenSilently();
   } catch (error) {
+    // Handle missing refresh token error specifically
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    if (errorMessage.includes('Missing Refresh Token')) {
+      console.error(
+        '❌ Missing Refresh Token: Please clear your browser storage and log in again. ' +
+        'The refresh token is required for silent authentication. ' +
+        'This usually happens if you logged in before the offline_access scope was enabled.'
+      );
+      // Suggest clearing storage and re-authenticating
+      throw new Error(
+        'Missing Refresh Token. Please clear your browser storage (localStorage) and log in again to obtain a refresh token.'
+      );
+    }
     console.error('Failed to get access token:', error);
     return null;
   }

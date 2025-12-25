@@ -1,5 +1,5 @@
 /**
- * Common types and interfaces shared across MedBai React applications
+ * Common types and interfaces shared across React applications
  */
 
 export interface BaseComponentProps {

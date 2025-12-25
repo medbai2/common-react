@@ -1,7 +1,7 @@
 {
   "name": "@medbai/common-react",
   "version": "1.0.0",
-  "description": "Shared React components, utilities, and styles for MedBai projects",
+  "description": "Shared React components, utilities, and styles for React projects",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -46,9 +46,8 @@
     "react",
     "typescript",
     "components",
-    "utilities",
-    "medbai"
+    "utilities"
   ],
-  "author": "MedBai Team",
+  "author": "Company Team",
   "license": "MIT"
 }

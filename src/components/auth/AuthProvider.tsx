@@ -73,6 +73,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children, config }) 
       authorizationParams={{
         redirect_uri: config.redirectUri || window.location.origin + '/callback',
         audience: config.audience,
+        // Include offline_access scope to enable refresh tokens
+        // This allows the SDK to obtain and use refresh tokens for silent authentication
+        // Default scope includes: openid (required), profile, email, offline_access (for refresh tokens)
+        scope: config.scope || 'openid profile email offline_access',
       }}
       cacheLocation="localstorage"
       useRefreshTokens={true}
